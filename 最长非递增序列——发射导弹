@@ -1,0 +1,35 @@
+#include<stdio.h>
+int dp[20];
+int list[20];
+int max(int a,int b)
+{
+	return (a>b?a:b);
+}
+void main()
+{
+	int k,i,tmax,j;
+	while(scanf("%d",&k)!=EOF)
+	{
+		for(i=1;i<=k;i++)
+		{
+			scanf("%d",&list[i]);
+		}
+		for(i=1;i<=k;i++)
+		{
+			tmax=1;
+			for(j=1;j<i;j++)
+			{
+				if(list[j]>=list[i])
+				{
+					tmax=max(tmax,dp[j]+1);
+				}
+			}
+			dp[i]=tmax;
+		}
+		for(i=1;i<=k;i++)
+		{
+			tmax=max(tmax,dp[i]);
+		}
+		printf("%d",tmax);
+	}
+}
