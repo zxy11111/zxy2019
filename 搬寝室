@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+int list[2000];
+int dp[2000][2000];
+bool success;
+bool ca[2000];
+bool cmp(int a,int b)
+{
+	return a<b;
+}
+void main()
+{
+	int n,k,i,j,c=0,num=0;
+	while(scanf("%d%d",&n,&k)!=EOF)
+	{
+		for(i=1;i<=n;i++)
+		{
+			scanf("%d",&list[i]);
+		}
+		sort(list+1,list+n+1,cmp);
+		for(i=1;i<=n;i++)
+		{
+			ca[i]=false;
+		}
+		for(j=1;j<=k;j++)
+		{
+			int ans=1000;
+			int imark=0;
+			success=false;
+			for(i=1;i+1<=n;i++)
+			{
+				if(ca[i]==false&&ca[i+1]==false)
+				{
+					c=list[i+1]-list[i];
+					if(c<ans) 
+					{
+						success=true;
+						ans=c;
+					}
+			    	if(success==true)
+					{
+			     		imark=i;
+			     		success=false;
+					}	
+				}
+			}
+			ca[imark]=true;
+			ca[imark+1]=true;
+			ans=ans*ans;
+			num+=ans;
+		}
+		printf("%d",num);
+	}
+}
