@@ -1,0 +1,47 @@
+#include<stdio.h>
+struct N{
+	int w;
+	int v;
+}coin[501];
+int dp[10000];
+int min(int a,int b)
+{
+	return (a>b?b:a);
+}
+void main()
+{
+	int t;
+	while(scanf("%d",&t)!=EOF)
+	{
+		while(t--)
+		{
+			int E,F;
+			scanf("%d%d",&E,&F);
+			int n,i,j;
+			scanf("%d",&n);
+			for(i=1;i<=n;i++)
+			{
+				scanf("%d%d",&coin[i].v,&coin[i].w);
+			}
+			for(i=0;i<=F-E;i++)
+			{
+				dp[i]=1000000;
+			}
+			dp[0]=0;
+			for(i=1;i<=n;i++)
+			{
+	     		for(j=coin[i].w;j<=F-E;j++)
+				{
+		    		if(dp[j-coin[i].w]!=1000000) dp[j]=min(dp[j],dp[j-coin[i].w]+coin[i].v);
+				}
+			}
+			int max=0;
+			if(dp[F-E]!=1000000)
+			{
+				max=dp[F-E];
+			}
+			if(max!=0) printf("The minimum amount of money in the piggy-bank is %d.\n",max);
+			else printf("This is impossible.\n");
+		}
+	}
+}
