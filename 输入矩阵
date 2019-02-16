@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+char lines[80][80];
+void main()
+{
+	int n;
+	char a,b,c;
+	while(scanf("%d%c%c",&n,&a,&b)!=EOF)
+	{
+		lines[n/2+1][n/2+1]=a;
+		int ans;
+		int j;
+		int num;
+		for(ans=1;ans<=n/2;ans++)
+		{
+			int i=n/2+1-ans;
+			if(ans%2==1) c=a;
+			else c=b;
+			for(num=1;num<=1+2*ans;num++)
+			{
+				lines[i][i+num-1]=c;
+			}
+			for(num=1;num<=1+2*ans;num++)
+			{
+				lines[i+num-1][i]=c;
+			}
+			for(num=1;num<=1+2*ans;num++)
+			{
+				lines[i+num-1][i+2*ans]=c;
+			}
+			for(num=1;num<=1+2*ans;num++)
+			{
+				lines[i+2*ans][i+num-1]=c;
+			}
+		}
+		lines[0][0]=' ';
+		lines[0][n-1]=' ';
+		lines[n-1][0]=' ';
+		lines[n-1][n-1]=' ';
+		int i;
+		for(i=0;i<n;i++)
+		{
+			puts(lines[i]);
+		}
+		system("pause");
+	}
+}
