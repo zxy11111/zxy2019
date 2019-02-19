@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+struct food{
+	double s;
+	double p;
+	double r;
+	bool operator <(const food &a) const{
+		return r>a.r;
+	}
+}buf[1000];
+void main()
+{
+	int m,n;
+	while(scanf("%d%d",&m,&n)!=EOF)
+	{
+		if(m==-1&&n==-1) break;
+		int i;
+		for(i=0;i<n;i++)
+		{
+			scanf("%lf%lf",&buf[i].s,&buf[i].p);
+			buf[i].r=buf[i].s*1.0/buf[i].p;
+		}
+		sort(buf,buf+n);
+		int ans=0;
+		double sum=0;
+		int tmp;
+		tmp=m;
+		m-=buf[ans].p;
+		if(m<=0)
+		{
+			sum+=tmp*buf[ans].r;
+		}
+		while(m>0)
+		{
+			sum+=buf[ans].s;
+			ans++;
+			if(m>=buf[ans].p)
+			{
+				m-=buf[ans].p;
+			}
+			else
+			{
+				sum+=m*buf[ans].r;
+				break;
+			}
+		}
+		printf("%.3lf",sum);
+	}
+}
