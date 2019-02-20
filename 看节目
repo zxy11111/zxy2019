@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+struct program{
+	int start;
+	int end;
+	bool operator <(const program &a) const{
+		return end<a.end;
+	}
+}buf[100];
+void main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		if(n==0) break;
+		int i;
+		for(i=0;i<n;i++)
+		{
+			scanf("%d%d",&buf[i].start,&buf[i].end);
+		}
+		sort(buf,buf+n);
+		int current=0,ans=0;
+		for(i=0;i<n;i++)
+		{
+			if(current<=buf[i].start)
+			{
+				current=buf[i].end;
+				ans++;
+			}
+		}
+		printf("%d",ans);
+	}
+}
