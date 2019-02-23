@@ -1,0 +1,31 @@
+#include<stdio.h>
+void main()
+{
+	int a,b,i=0,j;
+	while(scanf("%d%d",&a,&b)!=EOF)
+	{
+		int buf1[100],buf2[100];
+		int ans=0;
+		while(a!=0)
+		{
+			buf1[i++]=a%10;
+			a/=10;
+		}
+		int tmp1=i;
+		i=0;
+		while(b!=0)
+		{
+			buf2[i++]=b%10;
+			b/=10;
+		}
+		int tmp2=i;
+		for(i=0;i<tmp1;i++)
+		{
+			for(j=0;j<tmp2;j++)
+			{
+				ans+=buf1[i]*buf2[j];
+			}
+		}
+		printf("%d",ans);
+	}
+}
