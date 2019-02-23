@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<string.h>
+struct node{
+	node*lchild;
+	node*rchild;
+	char c;
+}tree[100];
+int ans=0;
+node*create()
+{
+	tree[ans].lchild=tree[ans].rchild=NULL;
+	return &tree[ans++];
+}
+void postorder(node*t)
+{
+	if(t->lchild!=NULL)
+	{
+		postorder(t->lchild);
+	}
+	if(t->rchild!=NULL)
+	{
+		postorder(t->rchild);
+	}
+	printf("%c",t->c);
+}
+char str1[100],str2[100];
+node*build(int l1,int s1,int l2,int s2)
+{
+	node*t=create();
+	t->c=str1[l1];
+	int root,i;
+	for(i=l2;i<=s2;i++)
+	{
+		if(str2[i]==str1[l1])
+		{
+			root=i;
+			break;
+		}
+	}
+	if(root!=l2)
+	{
+		t->lchild=build(l1+1,l1+root-l2,l2,root-1);
+	}
+	if(root!=s2)
+	{
+		t->rchild=build(l1+root-l2+1,s1,root+1,s2);
+	}
+	return t;
+}
+void main()
+{
+	while(scanf("%s",str1)!=EOF)
+	{
+		scanf("%s",str2);
+		int a=strlen(str1);
+		int b=strlen(str2);
+		node*t=build(0,a-1,0,b-1);
+		postorder(t);
+	}
+}
+
