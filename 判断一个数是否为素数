@@ -1,0 +1,33 @@
+#include<stdio.h>
+int judge(int x)
+{
+	int i;
+	bool success=true;
+	if(x<=1) return 0;
+	else if(x==2) return 1;
+	else
+	{
+		for(i=2;i<x;i++)
+		{
+			if(x%i==0)
+			{
+				success=false;
+				break;
+			}
+		}
+		if(success==true)
+		{
+			return 1;
+		}
+		else return 0;
+	}
+}
+void main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		int a=judge(n);
+		puts(a==1?"yes":"no");
+	}
+}
