@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+int digit[100];
+void main()
+{
+	int a,b;
+	char n[100];
+	while(scanf("%d%s%d",&a,n,&b)!=EOF)
+	{
+		int c=strlen(n);
+		int i,ans=0,tmp=1;
+		for(i=c-1;i>=0;i--)
+		{
+			if(n[i]>='a'&&n[i]<='z')
+			{
+				ans+=(n[i]-'a'+10)*tmp;
+			}
+			else if(n[i]>='A'&&n[i]<='Z')
+			{
+				ans+=(n[i]-'A'+10)*tmp;
+			}
+			else if(n[i]>='0'&&n[i]<='9')
+			{
+				ans+=(n[i]-'0')*tmp;
+			}
+			tmp*=a;
+		}
+		tmp=0;
+		while(ans>0)
+		{
+			digit[tmp++]=ans%b;
+			ans/=b;
+		}
+		for(i=tmp-1;i>=0;i--)
+		{
+			printf("%d",digit[i]);
+		}
+		printf("\n");
+	}
+}
