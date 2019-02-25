@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<math.h>
+int prime[100000]={0};
+int count1[100000]={0};
+int count2[100000]={0};
+int ans=2;
+int min(int a,int b)
+{
+	return a<b?a:b;
+}
+int power(int a,int b)
+{
+	if(b==0) return 1;
+	else return a*power(a,b-1);
+}
+void init()
+{
+	int i,j;
+	bool success=true;
+	prime[0]=2;
+	prime[1]=3;
+	for(i=4;i<100000;i++)
+	{
+		for(j=2;j<=sqrt(i);j++)
+		{
+			if(i%j==0)
+			{
+				success=false;
+				break;
+			}
+		}
+		if(success==true)
+		{
+			prime[ans++]=i;
+		}
+		success=true;
+	}
+}
+void main()
+{
+	int n,a;
+	while(scanf("%d%d",&n,&a)!=EOF)
+	{
+		if(n<=1||a<=1) break;
+		int num,cnum1=0,cnum2=0;
+		int temp=1;
+		int tmp=1;
+		int cc1=0;
+		int i;
+		for(num=0;prime[num]<sqrt(n);num++)
+		{
+			while(temp<n)
+			{
+				temp*=prime[num];
+				if(temp>=n) break;
+		    	cnum1+=tmp*n/temp;
+				tmp++;
+			}
+			count1[num]=cnum1;
+			cnum1=0;
+			tmp=1;
+			temp=1;
+		}
+		cc1=num;
+		for(i=0;i<ans;i++)
+		{
+			while(a%prime[i]==0)
+			{
+				a/=prime[i];
+				cnum2++;
+			}
+			count2[i]=cnum2;
+			cnum2=0;
+		}
+		int k=1;
+		for(i=0;i<cc1;i++)
+		{
+			if(count2[i]==0||count1[i]==0) continue;
+			k=min(k,count1[i]/count2[i]);
+		}
+		printf("%d",k);
+	}
+}
