@@ -39,6 +39,7 @@ void init()
 void main()
 {
 	int n,a;
+	init();
 	while(scanf("%d%d",&n,&a)!=EOF)
 	{
 		if(n<=1||a<=1) break;
@@ -78,6 +79,7 @@ void main()
 			if(count2[i]==0||count1[i]==0) continue;
 			k=min(k,count1[i]/count2[i]);
 		}
-		printf("%d",k);
+		printf("%d\n",k);
 	}
 }
+
