@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+struct edge{
+	int a;
+	int b;
+	int weight;
+	bool operator <(const edge &a) const{
+		return weight<a.weight;
+	}
+}e[10000];
+int ans=0;
+int tree[100];
+int findroot(int a)
+{
+	if(tree[a]==-1) return a;
+	else
+	{
+		int tmp=findroot(tree[a]);
+		tree[a]=tmp;
+		return tmp;
+	}
+}
+void main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		if(n==0) break;
+		int i;
+		for(i=1;i<=n;i++)
+		{
+			tree[i]=-1;
+		}
+		int m=n*(n-1)/2;
+		while(m--)
+		{
+			scanf("%d%d%d",&e[ans].a,&e[ans].b,&e[ans].weight);
+			ans++;
+		}
+		sort(e,e+ans);
+		int count=0;
+		for(i=0;i<ans;i++)
+		{
+			int c=findroot(e[i].a);
+			int d=findroot(e[i].b);
+			if(c!=d&&tree[c]==-1)
+			{
+				count+=e[i].weight;
+				tree[c]=d;
+			}
+			else if(c!=d&&tree[d]==-1)
+			{
+				count+=e[i].weight;
+				tree[d]=c;
+			}
+		}
+		printf("%d",count);
+	}
+}
