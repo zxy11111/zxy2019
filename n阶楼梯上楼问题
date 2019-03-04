@@ -1,0 +1,17 @@
+#include<stdio.h>
+int dp[100];
+void main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		dp[1]=1;
+		dp[2]=2;
+		int i;
+		for(i=3;i<90;i++)
+		{
+			dp[i]=dp[i-2]+dp[i-1];
+		}
+		printf("%d",dp[n]);
+	}
+}
