@@ -1,0 +1,37 @@
+#include<stdio.h>
+int max(int a,int b)
+{
+	return a>b?a:b;
+}
+void main() 
+{
+	int n;
+	int object[26];
+	int dp[26];
+	while(scanf("%d",&n)!=EOF)
+	{
+		int i,j;
+		for(i=1;i<=n;i++)
+		{
+			scanf("%d",&object[i]);
+		}
+		for(i=1;i<=n;i++)
+		{
+			int tmax=1;
+			for(j=1;j<i;j++)
+			{
+				if(object[j]>=object[i])
+				{
+					tmax=max(tmax,dp[j]+1);
+				}
+			}
+			dp[i]=tmax;
+		}
+		int ans=1;
+		for(i=1;i<=n;i++)
+		{
+			if(dp[i]>ans) ans=dp[i];
+		}
+		printf("%d",ans);
+	}
+}
