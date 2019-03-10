@@ -4,7 +4,7 @@ using namespace std;
 char a[101][101];
 bool mark[101][101];
 int imark1,jmark1,imark2,jmark2;
-int go[][2]={1,0,-1,0,0,1,0,-1,1,1,1,-1,-1,-1,-1,1};
+int go[][2]={1,0,-1,0,0,1,0,-1};
 struct point{
 	int x,y;
 	int t;
@@ -17,7 +17,7 @@ int dfs(int n,int m)
 	{
 		point now=Q.front();
 	    Q.pop();
-		for(i=0;i<8;i++)
+		for(i=0;i<4;i++)
     	{
 			int nx=now.x+go[i][0];
 			int ny=now.y+go[i][1];
