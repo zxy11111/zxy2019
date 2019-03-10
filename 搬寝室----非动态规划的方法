@@ -1,0 +1,60 @@
+#include<stdio.h>
+int a[2001];
+int f(int a,int b)
+{
+	if(a>b) return a-b;
+	else return b-a;
+}
+void main()
+{
+	int n,k;
+	while(scanf("%d%d",&n,&k)!=EOF)
+	{
+		if(2*k>n) break;
+		int i,j;
+		for(i=1;i<=n;i++)
+		{
+			scanf("%d",&a[i]);
+		}
+		int cnt=100000;
+		int count=0;
+		int jtemp=1;
+		bool success=false;
+		int p=2*k;
+		for(i=1;i<=n;i++)
+		{
+			if(p==0||p==1) break;
+			int tmp=a[i];
+			for(j=i+1;j<=n;j++)
+			{
+				if(f(a[j],tmp)<cnt&&tmp!=0&&a[j]!=0)
+				{
+					jtemp=j;
+					cnt=f(a[j],tmp);
+					success=true;
+				}
+			}
+			if(success==true)
+			{
+				p-=2;
+				a[i]=a[jtemp]=0;
+			    count+=cnt*cnt;
+			}			
+			cnt=100000;
+			success=false;
+		}
+		if(p==1)
+		{
+			int temp=a[1];
+			for(i=2;i<=n;i++)
+	    	{
+				if(a[i]!=0&&a[i]<a[1])
+		    	{
+		     		temp=a[i];
+		    	}
+	    	}
+			count+=a[i]*a[i];
+		}		
+		printf("%d",count);
+	}
+}
