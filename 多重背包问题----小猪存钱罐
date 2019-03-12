@@ -1,0 +1,50 @@
+#include<stdio.h>
+int min(int a,int b)
+{
+	return a>b?b:a;
+}
+struct coins{
+	int value;
+	int weight;
+	double wv;
+}c[501];
+int dp[50001];
+void main()
+{
+	int t;
+	while(scanf("%d",&t)!=EOF)
+	{
+		int E,F;
+		scanf("%d%d",&E,&F);
+		int w=F-E;
+		int n,i,j;
+		scanf("%d",&n);
+		for(i=1;i<=n;i++)
+		{
+			scanf("%d%d",&c[i].value,&c[i].weight);
+		}
+		for(i=0;i<=w;i++)
+		{
+			dp[i]=1000;
+		}
+		dp[0]=0;
+		for(i=1;i<=n;i++)
+		{
+			for(j=c[i].weight;j<=w;j++)
+			{
+				if(dp[j-c[i].weight]!=1000)
+				{
+					dp[j]=min(dp[j],dp[j-c[i].weight]+c[i].value);
+				}
+			}
+		}
+		if(dp[w]!=1000)
+		{
+			printf("the minimum is %d",dp[w]);
+		}
+		else
+		{
+			printf("that is impossible");
+		}
+	}
+}
