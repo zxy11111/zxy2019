@@ -1,0 +1,17 @@
+#include<stdio.h>
+void main()
+{
+	int i;
+	double sum=1;
+	for(i=1;i<=1000;i++)
+	{
+		double temp=1.0/(i*(i+1));
+		if(temp<=1.0/(10*10*10*10*10*10))
+		{
+			sum+=temp;
+			break;
+		}
+		sum+=temp;
+	}
+	printf("%lf",sum);
+}
