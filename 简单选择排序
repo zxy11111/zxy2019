@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int n,m;
+	int a[100];
+	while(scanf("%d%d",&n,&m)!=EOF)
+	{
+		if(m>=n) break;
+		int i,j;
+		for(i=0;i<n;i++)
+		{
+			scanf("%d",&a[i]);
+		}
+		for(i=0;i<n;i++)
+		{
+			int temp=i;
+			for(j=i+1;j<n;j++)
+			{
+				if(a[j]<a[temp])
+				{
+					temp=j;
+				}
+			}
+			if(i!=temp)
+			{
+				int tmp=a[temp];
+				a[temp]=a[i];
+				a[i]=tmp;
+			}
+		}
+		for(i=0;i<m;i++)
+		{
+			printf("%4d",a[i]);
+		}
+		system("pause");
+	}
+}
