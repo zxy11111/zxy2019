@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<algorithm>
+#include<stdlib.h>
+using namespace std;
+struct student{
+	int score1;
+	int score2;
+	int score3;
+	int score4;
+	double average;
+};
+bool cmp(student a,student b)
+{
+	return a.average>b.average;
+}
+void main()
+{
+	student s[35];
+	int i;
+	for(i=0;i<35;i++)
+	{
+		scanf("%d%d%d%d",&s[i].score1,&s[i].score2,&s[i].score3,&s[i].score4);
+	}
+	for(i=0;i<35;i++)
+	{
+		s[i].average=(s[i].score1+s[i].score2+s[i].score3+s[i].score4)*1.0/4;
+	}
+	sort(s,s+35,cmp);
+	for(i=0;i<35;i++)
+	{
+		printf("%lf",s[i].average);
+	}
+	system("pause");
+}
