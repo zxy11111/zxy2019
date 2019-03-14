@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int head=0,rear=8,i;
+	int a[9];
+	for(i=0;i<9;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	while(head<=rear)
+	{
+		int mid=(head+rear)/2;
+		if(a[mid]==80)
+		{
+			printf("%d\n",a[mid]);
+			break;
+		}
+		else if(a[mid]<80)
+		{
+			head=mid+1;
+		}
+		else if(a[mid]>80)
+		{
+			rear=mid-1;
+		}
+	}
+	head=0,rear=8;
+	while(head<=rear)
+	{
+		int mid=(head+rear)/2;
+		if(a[mid]==10)
+		{
+			printf("%d\n",a[mid]);
+			break;
+		}
+		else if(a[mid]<10)
+		{
+			head=mid+1;
+		}
+		else if(a[mid]>10)
+		{
+			rear=mid-1;
+		}
+	}
+	system("pause");
+}
