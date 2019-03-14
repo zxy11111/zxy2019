@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void main()
+{
+	char *sentence[100];
+	int i,j,count=0;
+	char *temp="1000";
+	for(i=0;i<100;i++)
+	{
+		sentence[i]=(char*)malloc(sizeof(char)*100);
+		scanf("%s",sentence[i]);
+	}
+	for(i=0;i<100;i++)
+	{
+		temp=strstr(sentence[i],"your sincerely");
+		if(strcmp(temp,"1000")!=0)
+		{
+			count=i;
+			temp="1000";
+		}
+	}
+	puts(sentence[count]);
+}
