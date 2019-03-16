@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct stuff{
+	int num;
+	char name[20];
+	int salary;
+}s[100];
+void main()
+{
+	int i;
+	FILE *fp;
+	FILE *fp1;
+	FILE *fp2;
+	if((fp=fopen("b.txt","w"))==NULL)
+	{
+		printf("cannot open the file!");
+		return;
+	}
+	for(i=0;i<100;i++)
+	{
+		scanf("%d%s%d",&s[i].num,s[i].name,&s[i].salary);
+	}
+	for(i=0;i<100;i++)
+	{
+		fwrite(&s[i],sizeof(stuff),1,fp);
+	}
+	fclose(fp);
+	if((fp1=fopen("b.txt","r"))==NULL)
+	{
+		printf("cannot open the file!");
+		return;
+	}
+	while(!feof(fp1))
+	{
+		stuff st;
+		fread(&st,sizeof(stuff),1,fp1);
+		printf("%d%s%d",st.num,st.name,st.salary);
+	}
+	fclose(fp1);
+	fp1=fopen("b.txt","r");
+	if(fp1==NULL)
+	{
+		printf("cannot open the file!");
+		return;
+	}
+	if((fp2=fopen("c.txt","w"))==NULL)
+	{
+		printf("cannot open the file!");
+		return;
+	}
+	while(!feof(fp1))
+	{
+		stuff ff;
+		fread(&ff,sizeof(stuff),1,fp1);
+		if(ff.salary<300)
+		{
+			fprintf(fp2,"%d%s%d",ff.num,ff.name,ff.salary);
+		}
+	}
+	system("pause");
+}
