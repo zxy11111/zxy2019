@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+	int data;
+	node *next;
+};
+node *create()
+{
+	node *t;
+	int n;
+	t=(node*)malloc(sizeof(node));
+	t->next=NULL;
+	node *head=t;
+	node *rear=t;
+	while(scanf("%d",&n)!=EOF&&n!=0)
+	{
+		node *p;
+		p=(node*)malloc(sizeof(node));
+		p->data=n;
+		rear->next=p;
+		rear=p;
+	}
+	rear->next=NULL;
+	return head;
+}
+int isorder(node *p)
+{
+	node *t=p->next;
+	while(t)
+	{
+		node *q=t->next;
+		if(!q)
+		{
+			break;
+		}
+		if(t->data>q->data)
+		{
+			return 0;
+		}
+		t=t->next;
+	}
+	return 1;
+}
+void main()
+{
+	node *t=create();
+	int c=isorder(t);
+	puts(c==1?"yes":"no");
+	system("pause");
+}
