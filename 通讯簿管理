@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct telephone{
+	char name[20];
+	char offtele[20];
+	char homtele[20];
+	char phonenum[20];
+	char fax[20];
+}t[200];
+void main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		int i;
+		for(i=0;i<n;i++)
+		{
+			scanf("%s%s%s%s%s",t[i].name,t[i].offtele,t[i].homtele,t[i].phonenum,t[i].fax);
+		}
+		system("pause");
+	}
+}
