@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<string>
+#include<iostream>
+using namespace std;
+int main()
+{
+	char str[100];
+	gets(str);
+	string a;
+	a=str;
+	int i;
+	for(i=0;i<a.size();i++)
+	{
+		a[i]=tolower(a[i]);
+	}
+	while(gets(str))
+	{
+		string b=str;
+		for(i=0;i<b.size();i++)
+		{
+			b[i]=tolower(b[i]);
+		}
+		int t=b.find(a,0);
+		while(t!=string::npos)
+		{
+			b.erase(t,a.size());
+			t=b.find(a,0);
+		}
+		t=b.find(' ',0);
+		while(t!=string::npos)
+		{
+			b.erase(t,1);
+			t=b.find(' ',0);
+		}
+		cout<<b<<endl;
+	}
+}
